@@ -1,13 +1,10 @@
 package circus;
 
-import circus.equipment.Equipment;
-import circus.equipment.Cannon;
-import circus.equipment.Ladder;
+import circus.animal.*;
+import circus.equipment.*;
 
-import circus.animal.Tiger;
-import circus.animal.Animal;
-import circus.animal.Duck;
-import circus.animal.Parrot;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Circus {
     private static Animal[] animals = {
@@ -42,8 +39,42 @@ public class Circus {
     }
 
     public static void main(String[] args) {
-        makeAnimalsTalk();
-        System.out.println("Total value of animals " + calculateAssetValue(animals));
-        System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+        ArrayList<Animal> animalArrayList= new ArrayList<>(Arrays.asList(animals));
+        System.out.println("Total number of animals " + animals.length);
+        System.out.println("Total number of animals with AL " + animalArrayList.size());
+
+        animalArrayList.add(new Elephant("Dumbo"));
+        System.out.println("Total number of animals with AL " + animalArrayList.size());
+        nameAllAnimals(animalArrayList);
+
+        Parrot Andy = new Parrot("Andy");
+        animalArrayList.add(Andy);
+        System.out.println("Total number of animals with AL " + animalArrayList.size());
+        System.out.println("Position of Andy is " + animalArrayList.indexOf(Andy));
+        System.out.println("Pre-sort: \n");
+        printAllAnimals();
+
+        Animal candidate = findAnimalRef(animalArrayList, "Polly");
+        System.out.println("Position of Andy is " + animalArrayList.indexOf(candidate));
+
+
+        // makeAnimalsTalk();
+        //System.out.println("Total value of animals " + calculateAssetValue(animals));
+        // System.out.println("Total value of equipments " + calculateAssetValue(equipments));
     }
+
+    private static void nameAllAnimals(ArrayList<Animal> animals) {
+        for(Animal A: animals) {
+            System.out.println(A);
+        }
+    }
+
+    private static Animal findAnimalRef(ArrayList<Animal> animals, String nameOfAnimal) {
+        for (Animal a: animals){
+            if (a.name == nameOfAnimal){
+                return a;
+            }
+        }
+    }
+    animalArrayList.sort(Animal.animalNameComparator);
 }
