@@ -13,5 +13,6 @@ public abstract class Animal implements Asset {
         @Override
         public int compare (Animal animal1, Animal animal2) {
             return animal1.name.compareToIgnoreCase(animal2.name);
-    }
+        }
+    };
 }
